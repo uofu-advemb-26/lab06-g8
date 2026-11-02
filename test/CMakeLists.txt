@@ -1,4 +1,5 @@
-add_executable(mytest test.c unity_config.c)
+add_executable(mytest schedule.c unity_config.c)
+target_include_directories(mytest PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 
 add_library(unity ${UNITY_PATH}/src/unity.c)
 target_include_directories(unity PUBLIC ${UNITY_PATH}/src)
