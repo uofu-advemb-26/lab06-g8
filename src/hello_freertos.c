@@ -88,9 +88,8 @@ void supervisor_task(__unused void *params) {
               PRIORITY_TASK_STACK_SIZE, NULL, HIGH_PRIORITY_TASK_PRIORITY,
               NULL);
 
-  while (1) {
-    taskYIELD();
-  }
+  // Delete the supervisor to yield to other tasks
+  vTaskDelete(NULL);
 }
 
 int main(void) {
