@@ -5,7 +5,7 @@
 
 #define TEST_DURATION 5000
 
-void run_analyzer(TaskFunction_t pri_thread_entry, int pri_priority,
+configRUN_TIME_COUNTER_TYPE run_analyzer(TaskFunction_t pri_thread_entry, int pri_priority,
                   uint32_t pri_delay, configRUN_TIME_COUNTER_TYPE *pri_duration,
 
                   TaskFunction_t sec_thread_entry, int sec_priority,
@@ -51,4 +51,6 @@ void run_analyzer(TaskFunction_t pri_thread_entry, int pri_priority,
 
   vTaskDelete(primary_thread);
   vTaskDelete(secondary_thread);
+
+  return start_count;
 }

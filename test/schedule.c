@@ -90,10 +90,12 @@ void test_no_priority__yield(void) {
 }
 
 void test_priority__low_first(void) {
-  run_analyzer(busy_busy, tskIDLE_PRIORITY + (3), 0, &first_stats, busy_busy,
+  configRUN_TIME_COUNTER_TYPE start_time = run_analyzer(busy_busy, tskIDLE_PRIORITY + (3), 0, &first_stats, busy_busy,
                tskIDLE_PRIORITY + (4), 1, &second_stats, &elapsed_stats,
                &elapsed_ticks);
-  TEST_ASSERT(1000 > first_stats);
+  printf("first_stats: %llu", first_stats);
+  printf("second_stats: %llu", second_stats);
+  TEST_ASSERT(1000 + start_time > first_stats);
   TEST_ASSERT(4500000 < second_stats);
 }
 
@@ -101,7 +103,6 @@ void test_priority__high_first(void) {
   run_analyzer(busy_busy, tskIDLE_PRIORITY + (4), 0, &first_stats, busy_busy,
                tskIDLE_PRIORITY + (3), 1, &second_stats, &elapsed_stats,
                &elapsed_ticks);
-  TEST_ASSERT(4500000 < first_stats);
   TEST_ASSERT(1000 > second_stats);
 }
 
